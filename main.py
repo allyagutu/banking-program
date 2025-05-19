@@ -1,36 +1,48 @@
-# python Banking Program
+def print_border():
+    print("*********************")
+
 def show_balance(balance):
-    print("*********************")
+    print_border()
     print(f"Your balance is ${balance:.2f}")
-    print("*********************")
+    print_border()
 
 def deposit():
-    print("*********************")
-    amount = float(input("Enter an amount to be deposited: "))
-    print("*********************")
+    print_border()
+    try:
+        amount = float(input("Enter an amount to be deposited: "))
+    except ValueError:
+        print("Invalid input. Please enter a numeric value.")
+        print_border()
+        return 0
+    print_border()
 
-    if amount < 0:
-        print("*********************")
+    if amount <= 0:
+        print_border()
         print("That's not a valid amount")
-        print("*********************")
+        print_border()
         return 0
     else:
         return amount
 
 def withdraw(balance):
-    print("*********************")
-    amount = float(input("Enter amount to be withdrawn: "))
-    print("*********************")
+    print_border()
+    try:
+        amount = float(input("Enter amount to be withdrawn: "))
+    except ValueError:
+        print("Invalid input. Please enter a numeric value.")
+        print_border()
+        return 0
+    print_border()
 
     if amount > balance:
-        print("*********************")
+        print_border()
         print("Insufficient funds")
-        print("*********************")
+        print_border()
         return 0
     elif amount <= 0:
-        print("*********************")
+        print_border()
         print("Amount must be greater than 0")
-        print("*********************")
+        print_border()
         return 0
     else:
         return amount
@@ -40,34 +52,33 @@ def main():
     is_running = True
 
     while is_running:
-        print("*********************")
+        print_border()
         print("     banking program     ")
-        print("*********************")
+        print_border()
         print("1. Show Balance")
         print("2. Deposit")
         print("3. Withdraw")
         print("4. Exit")
-        print("*********************")
+        print_border()
 
         choice = input("Enter your choice (1-4): ")
 
         if choice == "1":
             show_balance(balance)
         elif choice == "2":
-            deposit_amount = deposit()
-            balance += deposit_amount
+            balance += deposit()
         elif choice == "3":
-            withdrawal_amount = withdraw(balance)
-            balance -= withdrawal_amount
+            balance -= withdraw(balance)
         elif choice == "4":
             is_running = False
         else:
-            print("*********************")
+            print_border()
             print("That is not a valid choice")
-            print("*********************")
-    print("*********************")
+            print_border()
+
+    print_border()
     print("Thank you! Have a nice day")
-    print("*********************")
+    print_border()
 
 if __name__ == "__main__":
     main()
